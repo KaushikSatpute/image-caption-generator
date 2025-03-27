@@ -8,19 +8,16 @@ st.markdown(
     """
     <style>
         body, .stApp {
-            background-color: #121212;  /* Dark Gray Background */
-            color: white; /* White Text */
+            background-color: #121212;
+            color: white;
         }
         .stTextInput, .stFileUploader, .stButton>button {
-            background-color: #1E1E1E; /* Dark Input Fields */
+            background-color: #1E1E1E;
             color: white;
             border: 1px solid #333;
         }
         .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
-            color: #1E90FF;  /* Bright Blue Headings */
-        }
-        .stImage {
-            border-radius: 10px; /* Rounded Image */
+            color: #1E90FF;
         }
     </style>
     """,
@@ -38,6 +35,9 @@ if uploaded_file is not None:
         if API_KEY.strip() == '':
             st.error('❌ Enter a valid API key')
         else:
+            # ✅ Ensure "temp" folder exists
+            os.makedirs("temp", exist_ok=True)
+
             file_path = os.path.join("temp", uploaded_file.name)
             with open(file_path, "wb") as f:
                 f.write(uploaded_file.getvalue())
@@ -46,7 +46,7 @@ if uploaded_file is not None:
 
             try:
                 genai.configure(api_key=API_KEY)
-                model = genai.GenerativeModel('gemini-1.5-flash')  # ✅ Updated Model
+                model = genai.GenerativeModel('gemini-1.5-flash')
 
                 caption = model.generate_content(["Write a caption for the image in English:", img])
                 tags = model.generate_content(["Generate 5 hashtags for the image in a line in English:", img])
@@ -65,7 +65,7 @@ if uploaded_file is not None:
                 else:
                     st.error(f"⚠️ Failed to configure API due to: {error_msg}")
 
-# Footer with Developer Name
+# Footer
 footer = """
     <style>
         .footer {
@@ -77,7 +77,7 @@ footer = """
             color: white; 
             text-align: center;
             padding: 10px 0;
-            background: #1E90FF;  /* Dark Blue Footer */
+            background: #1E90FF;
         }
         .footer a {
             color: white;
