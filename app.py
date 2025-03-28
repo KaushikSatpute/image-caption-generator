@@ -3,11 +3,11 @@ import os
 from PIL import Image
 import google.generativeai as genai
 
-# Custom CSS for Dark Mode, Interactive Upload Box, Modern Buttons, and Animations
+# Custom CSS with animations and enhanced UI
 st.markdown(
     """
     <style>
-        /* Smooth Dark Theme Background */
+        /* Gradient Background Animation */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -15,7 +15,7 @@ st.markdown(
         }
 
         body, .stApp {
-            background: linear-gradient(-45deg, #121212, #1e1e1e, #252525);
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
             color: white;
@@ -28,58 +28,42 @@ st.markdown(
         }
 
         .main-title {
-            color: #4CAF50;
+            color: #1E90FF;
             text-align: center;
-            font-size: 44px;
+            font-size: 42px;
             font-weight: bold;
             animation: titleFadeIn 1.5s ease-in-out;
         }
 
-        /* Upload Section - Modern Look */
-        .upload-box {
-            border: 2px dashed #4CAF50;
-            background-color: rgba(255, 255, 255, 0.08);
-            padding: 20px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        .upload-box:hover {
-            transform: scale(1.05);
-            background-color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Modern Input Box for API */
-        .api-input input {
-            border: 2px solid #4CAF50;
+        /* Upload Section */
+        .stFileUploader {
+            border: 2px dashed #1E90FF;
             background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 16px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        /* Modern Button Styles */
+        .stFileUploader:hover {
+            transform: scale(1.05);
+        }
+
+        /* Button Hover Effect */
         .stButton>button {
-            background: linear-gradient(135deg, #4CAF50 0%, #2E8B57 100%);
+            background-color: #1E90FF;
             color: white;
-            border: none;
             border-radius: 8px;
-            padding: 12px 24px;
+            padding: 10px 20px;
             font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease;
         }
 
         .stButton>button:hover {
-            background: linear-gradient(135deg, #2E8B57 0%, #1E6B43 100%);
+            background-color: #0f76c0;
             transform: scale(1.05);
         }
 
-        /* Image Hover Effects */
+        /* Image Effects */
         .stImage {
             border-radius: 15px;
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -104,8 +88,8 @@ st.markdown(
             font-size: 16px;
             color: white;
             text-align: center;
-            padding: 12px 0;
-            background: rgba(76, 175, 80, 0.8);
+            padding: 10px 0;
+            background: rgba(30, 144, 255, 0.8);
             animation: fadeIn 2s ease-in-out;
         }
 
@@ -123,16 +107,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Display Title
+# Display title
 st.markdown('<p class="main-title">📸 Image Captioning & Tagging</p>', unsafe_allow_html=True)
 
-# Upload Section with Styled Div
-st.markdown('<div class="upload-box">📂 Drag & Drop or Click to Upload an Image</div>', unsafe_allow_html=True)
-uploaded_file = st.file_uploader("", type=["jpg", "png", "jpeg"])
+# File Upload Section
+uploaded_file = st.file_uploader("📂 Choose an image...", type=["jpg", "png", "jpeg"])
 
-# API Key Input with Styled Box
-st.markdown('<div class="api-input">🔑 Enter API Key:</div>', unsafe_allow_html=True)
-API_KEY = st.text_input("", type="password")
+# API Key Input
+API_KEY = st.text_input("🔑 Enter your API Key: [Get it here](https://makersuite.google.com/app/apikey)", type="password")
 
 if uploaded_file is not None:
     if st.button('🚀 Upload & Generate'):
@@ -179,7 +161,7 @@ if uploaded_file is not None:
 # Footer Section
 footer = """
     <div class="footer">
-        <p>🚀 Built with ❤ by <a href="https://www.linkedin.com/in/kaushik-satpute" target="_blank">Kaushik Satpute</a></p>
+        <p>🚀 Built by <a href="https://www.linkedin.com/in/kaushik-satpute" target="_blank">Kaushik Satpute</a></p>
     </div>
 """
 st.markdown(footer, unsafe_allow_html=True)
