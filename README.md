@@ -52,7 +52,7 @@ This is a **Streamlit-based web application** that generates **captions** and **
 ### Steps:
 ```bash
 # Clone this repository
-git clone https://github.com/your-github/image-caption-generator.git
+git clone https://github.com/KaushikSatpute/image-caption-generator.git
 cd image-caption-generator
 
 # Install dependencies
